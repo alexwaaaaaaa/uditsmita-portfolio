@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));
+
+:root {
+  --bg-primary: #FDF3EC;
+  --bg-surface: #FFF9F4;
+  --bg-secondary: #F6E5D8;
+  --text-ink: #0B3D3C;
+  --text-muted: #4B6E6D;
+  --teal-deep: #0F4C4A;
+  --teal-darker: #0B3836;
+  --teal-sea: #3F9A94;
+  --peach: #F8A98A;
+  --peach-hover: #F2936E;
+  --peach-soft: #FDE8E0;
+  --yellow-warm: #FBD57A;
+  --yellow-light: #FEF3D7;
+  --panel-teal: #0F4C4A;
+  --card-light: #FFFFFF;
+  --card-border: rgba(15, 76, 74, 0.08);
+  --glass-bg: rgba(253, 243, 236, 0.85);
+  --shadow-warm: 0 20px 40px -15px rgba(15, 76, 74, 0.08);
+}
+
+[data-theme="dark"],
+.dark {
+  --bg-primary: #082523;
+  --bg-surface: #0C312E;
+  --bg-secondary: #07201E;
+  --text-ink: #FDF3EC;
+  --text-muted: #95BDBA;
+  --teal-deep: #0D3B38;
+  --teal-darker: #092725;
+  --teal-sea: #4AB2AC;
+  --peach: #F8A98A;
+  --peach-hover: #FBA07D;
+  --peach-soft: #2B1E19;
+  --yellow-warm: #FBD57A;
+  --yellow-light: #2C2615;
+  --panel-teal: #0A2E2C;
+  --card-light: #0E3634;
+  --card-border: rgba(253, 243, 236, 0.12);
+  --glass-bg: rgba(8, 37, 35, 0.88);
+  --shadow-warm: 0 20px 40px -15px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-primary);
+  color: var(--text-ink);
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-dmsans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Selection */
+::selection {
+  background-color: #F8A98A;
+  color: #0F4C4A;
+}
+
+/* Typography Helpers */
+.font-serif-heading {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.font-sans-body {
+  font-family: var(--font-dmsans), system-ui, sans-serif;
+}
+
+.font-handwriting {
+  font-family: var(--font-caveat), cursive;
+}
+
+/* Arch Image Frame Shape */
+.arch-frame {
+  border-radius: 180px 180px 24px 24px;
+}
+
+@media (min-width: 768px) {
+  .arch-frame {
+    border-radius: 220px 220px 28px 28px;
+  }
+}
+
+/* Speech Bubble with Sharp Top-Left Corner */
+.speech-bubble-sharp {
+  border-radius: 28px;
+  border-top-left-radius: 4px;
+}
+
+/* Blob Morphs */
+@keyframes blobMorph {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  33% {
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+  }
+  66% {
+    border-radius: 70% 30% 50% 50% / 30% 40% 60% 70%;
+  }
+}
+
+.animate-morph-blob {
+  animation: blobMorph 14s ease-in-out infinite alternate;
+}
+
+/* Infinite Rotating Badge */
+@keyframes spinBadge {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-badge {
+  animation: spinBadge 20s linear infinite;
+}
+
+/* Float Animation */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3F9A94;
+  border-radius: 9999px;
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0F4C4A;
+}
+
+/* Lenis recommended style */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
